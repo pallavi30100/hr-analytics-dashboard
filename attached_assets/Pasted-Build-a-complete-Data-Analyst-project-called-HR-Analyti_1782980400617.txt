@@ -1,0 +1,136 @@
+Build a complete Data Analyst project called "HR Analytics Dashboard" using Python, SQL, and Power BI-ready outputs.
+
+Project Goal:
+Analyze employee data to identify workforce trends, employee attrition, salary distribution, job satisfaction, and HR performance metrics. The project should look like a real business analytics project that can be added to a GitHub portfolio.
+
+Requirements:
+
+1. Project Structure
+Create the following folders:
+- data/
+- sql/
+- notebooks/
+- dashboard/
+- reports/
+- screenshots/
+- README.md
+
+2. Dataset
+Use the IBM HR Analytics Employee Attrition & Performance dataset (or generate a realistic sample dataset if unavailable).
+
+Dataset should include columns such as:
+EmployeeID, Age, Gender, Department, JobRole, MonthlyIncome, Attrition, JobSatisfaction, EnvironmentSatisfaction, Education, BusinessTravel, YearsAtCompany, YearsInCurrentRole, MaritalStatus, OverTime, PerformanceRating, DistanceFromHome.
+
+3. Data Cleaning (Python)
+Write a Python script using pandas that:
+- Handles missing values
+- Removes duplicates
+- Standardizes column names
+- Converts data types
+- Creates age groups
+- Creates salary bands
+- Saves a cleaned dataset
+
+4. SQL Analysis
+Create SQL scripts for:
+- Total employees
+- Active employees
+- Employees left
+- Attrition rate
+- Department-wise employee count
+- Average salary by department
+- Average salary by job role
+- Gender diversity
+- Years at company analysis
+- Job satisfaction analysis
+- Overtime analysis
+- Top 10 highest-paid employees
+- Department-wise attrition
+- Salary distribution
+- Performance analysis
+
+Use clean, optimized SQL queries with comments.
+
+5. Power BI Dashboard Design
+Design a modern HR Analytics dashboard containing:
+
+Top KPI Cards:
+- Total Employees
+- Employees Left
+- Attrition Rate
+- Average Salary
+- Average Age
+- Average Years at Company
+
+Charts:
+- Employee Count by Department
+- Attrition by Department
+- Attrition by Job Role
+- Attrition by Gender
+- Attrition by Age Group
+- Salary by Job Role
+- Salary Distribution
+- Job Satisfaction Distribution
+- Performance Rating Distribution
+- Years at Company Analysis
+- Overtime vs Attrition
+- Education Level Analysis
+
+Slicers:
+- Department
+- Gender
+- Job Role
+- Education
+- Attrition
+- Overtime
+
+Use a professional color palette (blue, white, gray) with a clean corporate dashboard layout.
+
+6. DAX Measures
+Generate DAX measures for:
+- Total Employees
+- Employees Left
+- Attrition Rate
+- Average Salary
+- Average Age
+- Average Years at Company
+- Average Job Satisfaction
+
+7. Business Insights
+Generate at least 15 meaningful insights, such as:
+- Which department has the highest attrition
+- Whether overtime affects attrition
+- Salary trends
+- Employee retention patterns
+- Gender diversity
+- High-risk employee groups
+- Experience vs attrition
+
+8. README.md
+Write a professional README including:
+- Project Overview
+- Objectives
+- Dataset Information
+- Tools Used
+- Project Workflow
+- SQL Analysis
+- Dashboard Features
+- Business Insights
+- Future Improvements
+- Screenshots section
+- Skills Demonstrated
+
+9. GitHub Ready
+Ensure the project follows professional GitHub standards with:
+- Well-commented code
+- Clear folder structure
+- Clean documentation
+- Easy setup instructions
+
+10. Resume Content
+Generate:
+- 4 resume bullet points
+- A project description suitable for LinkedIn
+- A GitHub repository description (2–3 lines)
+
+The final project should be polished, realistic, and suitable for showcasing Data Analyst skills to recruiters. Focus on business insights, clean code, and professional documentation.

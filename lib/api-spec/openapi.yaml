@@ -3,13 +3,15 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: HR Analytics Dashboard API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: hr
+    description: HR Analytics operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,255 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /hr/summary:
+    get:
+      operationId: getHrSummary
+      tags: [hr]
+      summary: HR KPI summary
+      description: Returns top-level KPI metrics
+      responses:
+        "200":
+          description: Summary KPIs
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HrSummary"
+
+  /hr/employees:
+    get:
+      operationId: getEmployees
+      tags: [hr]
+      summary: List all employees
+      description: Returns all employee records with optional filtering
+      parameters:
+        - name: department
+          in: query
+          schema:
+            type: ["string", "null"]
+        - name: gender
+          in: query
+          schema:
+            type: ["string", "null"]
+        - name: jobRole
+          in: query
+          schema:
+            type: ["string", "null"]
+        - name: attrition
+          in: query
+          schema:
+            type: ["string", "null"]
+        - name: overtime
+          in: query
+          schema:
+            type: ["string", "null"]
+        - name: education
+          in: query
+          schema:
+            type: ["string", "null"]
+      responses:
+        "200":
+          description: Employee list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Employee"
+
+  /hr/attrition-by-department:
+    get:
+      operationId: getAttritionByDepartment
+      tags: [hr]
+      summary: Attrition by department
+      responses:
+        "200":
+          description: Attrition by department
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AttritionByDept"
+
+  /hr/attrition-by-job-role:
+    get:
+      operationId: getAttritionByJobRole
+      tags: [hr]
+      summary: Attrition by job role
+      responses:
+        "200":
+          description: Attrition by job role
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AttritionByRole"
+
+  /hr/attrition-by-gender:
+    get:
+      operationId: getAttritionByGender
+      tags: [hr]
+      summary: Attrition by gender
+      responses:
+        "200":
+          description: Attrition by gender
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AttritionByGender"
+
+  /hr/attrition-by-age-group:
+    get:
+      operationId: getAttritionByAgeGroup
+      tags: [hr]
+      summary: Attrition by age group
+      responses:
+        "200":
+          description: Attrition by age group
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AttritionByAgeGroup"
+
+  /hr/salary-by-job-role:
+    get:
+      operationId: getSalaryByJobRole
+      tags: [hr]
+      summary: Average salary by job role
+      responses:
+        "200":
+          description: Salary by job role
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SalaryByRole"
+
+  /hr/salary-distribution:
+    get:
+      operationId: getSalaryDistribution
+      tags: [hr]
+      summary: Salary distribution histogram
+      responses:
+        "200":
+          description: Salary distribution
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SalaryBand"
+
+  /hr/job-satisfaction:
+    get:
+      operationId: getJobSatisfaction
+      tags: [hr]
+      summary: Job satisfaction distribution
+      responses:
+        "200":
+          description: Job satisfaction
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SatisfactionItem"
+
+  /hr/performance-distribution:
+    get:
+      operationId: getPerformanceDistribution
+      tags: [hr]
+      summary: Performance rating distribution
+      responses:
+        "200":
+          description: Performance distribution
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PerformanceItem"
+
+  /hr/years-at-company:
+    get:
+      operationId: getYearsAtCompany
+      tags: [hr]
+      summary: Years at company analysis
+      responses:
+        "200":
+          description: Years at company
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/YearsAtCompanyItem"
+
+  /hr/overtime-attrition:
+    get:
+      operationId: getOvertimeAttrition
+      tags: [hr]
+      summary: Overtime vs attrition analysis
+      responses:
+        "200":
+          description: Overtime attrition
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/OvertimeAttritionItem"
+
+  /hr/department-headcount:
+    get:
+      operationId: getDepartmentHeadcount
+      tags: [hr]
+      summary: Employee count by department
+      responses:
+        "200":
+          description: Department headcount
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/DepartmentHeadcount"
+
+  /hr/education-analysis:
+    get:
+      operationId: getEducationAnalysis
+      tags: [hr]
+      summary: Education level analysis
+      responses:
+        "200":
+          description: Education analysis
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EducationItem"
+
+  /hr/filters:
+    get:
+      operationId: getFilterOptions
+      tags: [hr]
+      summary: Get available filter options
+      responses:
+        "200":
+          description: Filter options
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FilterOptions"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +285,270 @@ components:
       required:
         - status
 
+    HrSummary:
+      type: object
+      required:
+        - totalEmployees
+        - activeEmployees
+        - employeesLeft
+        - attritionRate
+        - avgSalary
+        - avgAge
+        - avgYearsAtCompany
+        - avgJobSatisfaction
+      properties:
+        totalEmployees:
+          type: integer
+        activeEmployees:
+          type: integer
+        employeesLeft:
+          type: integer
+        attritionRate:
+          type: number
+        avgSalary:
+          type: number
+        avgAge:
+          type: number
+        avgYearsAtCompany:
+          type: number
+        avgJobSatisfaction:
+          type: number
+
+    Employee:
+      type: object
+      required:
+        - employeeId
+        - age
+        - gender
+        - department
+        - jobRole
+        - monthlyIncome
+        - attrition
+        - jobSatisfaction
+        - environmentSatisfaction
+        - education
+        - businessTravel
+        - yearsAtCompany
+        - yearsInCurrentRole
+        - maritalStatus
+        - overTime
+        - performanceRating
+        - distanceFromHome
+        - ageGroup
+        - salaryBand
+      properties:
+        employeeId:
+          type: integer
+        age:
+          type: integer
+        gender:
+          type: string
+        department:
+          type: string
+        jobRole:
+          type: string
+        monthlyIncome:
+          type: integer
+        attrition:
+          type: string
+        jobSatisfaction:
+          type: integer
+        environmentSatisfaction:
+          type: integer
+        education:
+          type: integer
+        businessTravel:
+          type: string
+        yearsAtCompany:
+          type: integer
+        yearsInCurrentRole:
+          type: integer
+        maritalStatus:
+          type: string
+        overTime:
+          type: string
+        performanceRating:
+          type: integer
+        distanceFromHome:
+          type: integer
+        ageGroup:
+          type: string
+        salaryBand:
+          type: string
+
+    AttritionByDept:
+      type: object
+      required: [department, total, attrited, attritionRate]
+      properties:
+        department:
+          type: string
+        total:
+          type: integer
+        attrited:
+          type: integer
+        attritionRate:
+          type: number
+
+    AttritionByRole:
+      type: object
+      required: [jobRole, total, attrited, attritionRate]
+      properties:
+        jobRole:
+          type: string
+        total:
+          type: integer
+        attrited:
+          type: integer
+        attritionRate:
+          type: number
+
+    AttritionByGender:
+      type: object
+      required: [gender, total, attrited, attritionRate]
+      properties:
+        gender:
+          type: string
+        total:
+          type: integer
+        attrited:
+          type: integer
+        attritionRate:
+          type: number
+
+    AttritionByAgeGroup:
+      type: object
+      required: [ageGroup, total, attrited, attritionRate]
+      properties:
+        ageGroup:
+          type: string
+        total:
+          type: integer
+        attrited:
+          type: integer
+        attritionRate:
+          type: number
+
+    SalaryByRole:
+      type: object
+      required: [jobRole, avgSalary, minSalary, maxSalary, count]
+      properties:
+        jobRole:
+          type: string
+        avgSalary:
+          type: number
+        minSalary:
+          type: number
+        maxSalary:
+          type: number
+        count:
+          type: integer
+
+    SalaryBand:
+      type: object
+      required: [band, count, attrited]
+      properties:
+        band:
+          type: string
+        count:
+          type: integer
+        attrited:
+          type: integer
+
+    SatisfactionItem:
+      type: object
+      required: [label, score, count, percentage]
+      properties:
+        label:
+          type: string
+        score:
+          type: integer
+        count:
+          type: integer
+        percentage:
+          type: number
+
+    PerformanceItem:
+      type: object
+      required: [label, rating, count, percentage]
+      properties:
+        label:
+          type: string
+        rating:
+          type: integer
+        count:
+          type: integer
+        percentage:
+          type: number
+
+    YearsAtCompanyItem:
+      type: object
+      required: [band, count, avgSalary, attritionRate]
+      properties:
+        band:
+          type: string
+        count:
+          type: integer
+        avgSalary:
+          type: number
+        attritionRate:
+          type: number
+
+    OvertimeAttritionItem:
+      type: object
+      required: [overtime, total, attrited, attritionRate]
+      properties:
+        overtime:
+          type: string
+        total:
+          type: integer
+        attrited:
+          type: integer
+        attritionRate:
+          type: number
+
+    DepartmentHeadcount:
+      type: object
+      required: [department, total, male, female]
+      properties:
+        department:
+          type: string
+        total:
+          type: integer
+        male:
+          type: integer
+        female:
+          type: integer
+
+    EducationItem:
+      type: object
+      required: [level, label, count, attritionRate]
+      properties:
+        level:
+          type: integer
+        label:
+          type: string
+        count:
+          type: integer
+        attritionRate:
+          type: number
+
+    FilterOptions:
+      type: object
+      required: [departments, genders, jobRoles, educationLevels]
+      properties:
+        departments:
+          type: array
+          items:
+            type: string
+        genders:
+          type: array
+          items:
+            type: string
+        jobRoles:
+          type: array
+          items:
+            type: string
+        educationLevels:
+          type: array
+          items:
+            type: string

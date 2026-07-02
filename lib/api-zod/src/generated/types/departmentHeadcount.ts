@@ -6,6 +6,9 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export interface HealthStatus {
-  status: string;
+export interface DepartmentHeadcount {
+  department: string;
+  total: number;
+  male: number;
+  female: number;
 }

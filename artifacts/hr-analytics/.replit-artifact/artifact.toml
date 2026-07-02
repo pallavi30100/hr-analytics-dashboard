@@ -1,0 +1,27 @@
+kind = "data-app"
+previewPath = "/"
+title = "HR Analytics Dashboard"
+version = "1.0.0"
+id = "artifacts/hr-analytics"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22107
+
+[services.development]
+run = "pnpm --filter @workspace/hr-analytics run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/hr-analytics", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/hr-analytics/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22107"
+BASE_PATH = "/"
