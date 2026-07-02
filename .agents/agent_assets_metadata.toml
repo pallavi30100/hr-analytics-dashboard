@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "MorS3kI5WVk1gb-5HDU27"
+uri = "file://hr-analytics-dashboard.tar.gz"
+type = "unspecified"
+title = "HR Analytics Dashboard — Full Project"
